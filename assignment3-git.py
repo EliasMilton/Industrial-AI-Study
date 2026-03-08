@@ -11,6 +11,7 @@ df1 = pd.read_csv('Trail1.csv')
 df2 = pd.read_csv('Trail2.csv')
 df3 = pd.read_csv('Trail3.csv')
 
+
 # Check the shape of each dataset
 print(df1.shape)
 print(df2.shape)
