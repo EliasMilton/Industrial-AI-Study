@@ -1,4 +1,7 @@
 #%%
+from py_compile import main
+
+import git
 import pandas as pd
 import numpy as np
 import os
@@ -65,5 +68,31 @@ cv_scores = cross_val_score(rf_classifier, X_train, y_train, cv=5)
 print("Cross-validation scores:", cv_scores)
 print("Mean cross-validation score:", np.mean(cv_scores))
 
-#Upload to github and share the link to the repository.
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
 
+# Create SVM model
+svm_model = SVC(kernel='rbf', random_state=42)
+
+# Train the model on the training data
+svm_model.fit(X_train, y_train)
+
+# Predict on the test set
+y_pred = svm_model.predict(X_test)
+
+# Calculate accuracy
+svm_accuracy = accuracy_score(y_test, y_pred)
+
+print("SVM Accuracy (80/20 split):", svm_accuracy)
+
+from sklearn.model_selection import cross_val_score
+
+# Create SVM model
+svm_model = SVC(kernel='rbf', random_state=42)
+
+# Perform 5-fold cross-validation
+svm_cv_scores = cross_val_score(svm_model, X, y, cv=5)
+
+print("SVM Cross-validation scores:", svm_cv_scores)
+print("Mean CV accuracy:", np.mean(svm_cv_scores))
+print("Standard deviation:", np.std(svm_cv_scores))
